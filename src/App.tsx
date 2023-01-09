@@ -10,9 +10,9 @@ export function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <BrowserRouter>
-        {/* <CoffesContextProvider> */}
+        <CoffesContextProvider>
           <Router />
-        {/* </CoffesContextProvider> */}
+        </CoffesContextProvider>
       </BrowserRouter>
 
       <GlobalStyle />

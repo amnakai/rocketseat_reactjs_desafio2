@@ -20,7 +20,7 @@ export function SelectedCoffe() {
             </div>
 
             <div className="col_sub">
-                R$ 9,90
+                R$ 9.90
             </div>
 
         </CheckoutItemContainer>

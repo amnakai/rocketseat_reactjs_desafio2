@@ -2,8 +2,15 @@ import { Coffee, Package, ShoppingCart, Watch } from "phosphor-react";
 import { HomeContainer, HomeIntro, HomeIntroImage, HomeIntroTitle, HomeIntroTextList, HomeMain, HomeMainTitle, HomeMainCatalog } from "./styles";
 import intro_cafe from '../../assets/intro_cafe.png';
 import { CatalogItem } from "./components/CatalogItem";
+import { useContext } from "react";
+import { CoffesContext } from "../../contexts/CoffesContext";
 
 export function Home() {
+
+    const {coffe_list} = useContext(CoffesContext);
+
+    console.log(coffe_list);
+
     return(
         <HomeContainer>
             <HomeIntro>
@@ -44,12 +51,20 @@ export function Home() {
                 <HomeMainTitle>Nossos Cafes</HomeMainTitle>
 
                 <HomeMainCatalog>
-                    <CatalogItem></CatalogItem>
-                    <CatalogItem></CatalogItem>
-                    <CatalogItem></CatalogItem>
-                    <CatalogItem></CatalogItem>
-                    <CatalogItem></CatalogItem>
-                    <CatalogItem></CatalogItem>
+                    {coffe_list.map(coffe => {
+                        return (
+                            <CatalogItem
+                                key={coffe.id}
+                                id={coffe.id}
+                                name={coffe.name}
+                                description={coffe.description}
+                                img={coffe.img}
+                                tags={coffe.tags}
+                                price={coffe.price}
+                            >
+                            </CatalogItem>        
+                        )
+                    })}
                 </HomeMainCatalog>
             </HomeMain>
 

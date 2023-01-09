@@ -1,27 +1,42 @@
 import { ShoppingCart } from "phosphor-react";
+import { Coffe } from "../../../../reducers/coffes/reducer";
 import { CatalogItemButton, CatalogItemContainer, CatalogItemForm, CatalogItemInput, CatalogItemTag, CatalogTagList } from "./styles";
 
-export function CatalogItem() {
+
+export function CatalogItem(props: any) {
+    const imgsrc = `/src/assets/cafe/${props.img}`
+    const pricestr =Intl.NumberFormat('pt-br', {minimumFractionDigits: 2}).format(props.price)
+
+    function handleOnChangeAmount() {
+
+    }
+
     return (
         <CatalogItemContainer>
-            <img src='/src/assets/cafe/americano.png'/>
+            <img src={imgsrc}/>
 
             <CatalogTagList>
-                <CatalogItemTag>TRADICIONAL</CatalogItemTag>
-                <CatalogItemTag>COM LEITE</CatalogItemTag>
+                {props.tags.map(
+                    (tag: string) => {
+                        return(
+                            <CatalogItemTag key={tag}>
+                                {tag}
+                            </CatalogItemTag>
+                        )
+                    }
+                )}
             </CatalogTagList>
 
-            <strong>Expresso Tradicional</strong>
+            <strong>{props.name}</strong>
 
-            <p>O tradicional café feito com água quente e grãos moídos</p>
+            <p>{props.description}</p>
 
             <CatalogItemForm>
                 <label>R$</label> 
-                <span>9,90</span>
+                <span>{pricestr}</span>
                 <CatalogItemInput 
                     type="number"
                     min={0} 
-                    value="0"
                 />
                 <CatalogItemButton>
                     <ShoppingCart  color="#FFFFFF" size={14}/>
