@@ -35,8 +35,8 @@ export const HeaderNavCart = styled(HeaderNavItem)`
   background-color: ${(props) => props.theme['yellow-light']};
 `
 
-export const HeaderNavCartCounter = styled.span`
-  display: flex;
+export const HeaderNavCartCounter = styled.span<{ itemCount:number }>`
+  display: ${props => props.itemCount>0 ? 'flex': 'none'};
   align-items: center;
   justify-content: center;
   background-color: ${(props) => props.theme['yellow-dark']};
@@ -47,4 +47,5 @@ export const HeaderNavCartCounter = styled.span`
   
   margin-top: -2rem;
   margin-right: -1rem;
+
 `

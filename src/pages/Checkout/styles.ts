@@ -49,46 +49,17 @@ export const CheckoutCardHeader = styled.div`
   }
 `
 
-export const CheckoutAddressCardForm = styled.form`
-  flex-wrap: wrap;
-  margin-top: 2rem;
-  display: flex;
-  gap: 0.5rem;
-  width: 100%;
-
-  .col-full {
-    width: 100%;
-  }
-
-  .col-fill {
-    flex: 1;
-  }
-
-  .col-small {
-    width: 10%;
-  }
-`
-
-export const CheckoutAddressCardInput = styled.input`
-  background-color: ${(props) => props.theme['base-input']};
-  border-radius: 4px;
-  padding: 0.75rem;
-  font-size: 0.875rem;
-  border: 1px solid ${(props) => props.theme['base-button']};
-  
-  &:focus {
-    border: 1px solid ${(props) => props.theme['yellow-dark']};
-  }
-
-  &:placeholder {
-    color: ${(props) => props.theme['base-label']};
-  }
-`
-
 export const CheckoutPaymentCardForm = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 0.5rem;
+  margin-top: 1rem;
+`
+
+export const ErrorMessage = styled.div`
+  color: ${(props) => props.theme['yellow-dark']};
+  border-radius: 6px;
+  font-size: 0.875rem;
   margin-top: 1rem;
 `
 
@@ -106,8 +77,14 @@ export const CheckoutCardButton = styled.button`
     border: 1px solid ${(props) => props.theme['purple']};
   }
 
-  &:hover{
+  &:not(:disabled):hover
     background-color: ${(props) => props.theme['base-hover']};
+    cursor: pointer
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
   }
 
 
@@ -151,9 +128,14 @@ export const CheckoutConfirmationButton = styled.button`
   font-weight: 700;
   margin-top: 1rem;
 
-  &:hover {
+  &:not(:disabled):hover {
     background-color: ${(props) => props.theme['yellow-dark']};
     cursor: pointer;
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
   }
 `
 
@@ -185,3 +167,4 @@ export const HeaderNavItem = styled.div`
   border-radius: 6px;
   padding: 0.5rem;
 `
+

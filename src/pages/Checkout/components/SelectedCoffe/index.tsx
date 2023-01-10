@@ -1,18 +1,32 @@
 import { CheckoutItemButton, CheckoutItemContainer, CheckoutItemForm, CheckoutItemInput } from "./styles";
-import intro_cafe from '../../../../assets/cafe/americano.png';
 import { CheckoutCardButton } from "../../styles";
 import { Trash } from "phosphor-react";
+import { useContext } from "react";
+import { CoffesContext } from "../../../../contexts/CoffesContext";
 
-export function SelectedCoffe() {
+export function SelectedCoffe(props: any) {
+    const {setCoffeAmount} = useContext(CoffesContext);
+
+    const imgsrc = `/src/assets/cafe/${props.img}`
+    const pricestr = Intl.NumberFormat('pt-br', { minimumFractionDigits: 2 }).format(props.price * props.amount)
+
+    function handleOnChangeCoffeAmount(event: any) {
+        setCoffeAmount(props.id, event.target.value);
+    }
+
+    function handleOnClickRemoveItem() {
+        setCoffeAmount(props.id, 0);
+    }
+
     return (
         <CheckoutItemContainer>
-            <img src={intro_cafe}></img>
+            <img src={imgsrc}></img>
 
             <div>
-                <span>Expresso Tradicional</span>
+                <span>{props.name}</span>
                 <CheckoutItemForm>
-                    <CheckoutItemInput type="number" min={1}></CheckoutItemInput>
-                    <CheckoutItemButton>
+                    <CheckoutItemInput type="number" min={1} value={props.amount} onChange={handleOnChangeCoffeAmount}></CheckoutItemInput>
+                    <CheckoutItemButton onClick={handleOnClickRemoveItem}>
                         <Trash color="#8047F8" size={16}/>
                         REMOVER
                     </CheckoutItemButton>
@@ -20,7 +34,7 @@ export function SelectedCoffe() {
             </div>
 
             <div className="col_sub">
-                R$ 9.90
+                R$ {pricestr}
             </div>
 
         </CheckoutItemContainer>

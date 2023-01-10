@@ -2,25 +2,37 @@ import { HeaderContainer, HeaderNavCart, HeaderNavCartCounter, HeaderNavLocation
 import {  MapPin, ShoppingCart } from 'phosphor-react'
 import { NavLink } from 'react-router-dom'
 import logo from '../../assets/logo.png'
+import { useContext } from 'react';
+import { CoffesContext } from '../../contexts/CoffesContext';
 
 export function Header() {
+  const {coffe_list} = useContext(CoffesContext);
+
+  const itemCount = coffe_list.filter(
+    coffe => {
+      return (coffe.amount && coffe.amount > 0);
+    }
+  ).length;
+
   return (
     <HeaderContainer>
-      <span>
-        <img src={logo} />
-      </span>
+      <NavLink to="/" title="Home">
+        <span>
+          <img src={logo} />
+        </span>
+      </NavLink>
       <nav>
         <NavLink to="/" title="Home">
           <HeaderNavLocation>
             <MapPin size={22} />
-            Porto Alegre, RS
+            Campinas, SP
           </HeaderNavLocation>
         </NavLink>
         <NavLink to="/checkout" title="Carrinho">
           <HeaderNavCart>
             <ShoppingCart size={22} />
-            <HeaderNavCartCounter>
-                3
+            <HeaderNavCartCounter itemCount={itemCount}>
+                {itemCount}
             </HeaderNavCartCounter>
           </HeaderNavCart>
         </NavLink>

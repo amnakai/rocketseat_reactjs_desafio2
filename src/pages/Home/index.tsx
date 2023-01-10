@@ -9,8 +9,6 @@ export function Home() {
 
     const {coffe_list} = useContext(CoffesContext);
 
-    console.log(coffe_list);
-
     return(
         <HomeContainer>
             <HomeIntro>
@@ -61,6 +59,7 @@ export function Home() {
                                 img={coffe.img}
                                 tags={coffe.tags}
                                 price={coffe.price}
+                                amount={coffe.amount}
                             >
                             </CatalogItem>        
                         )
